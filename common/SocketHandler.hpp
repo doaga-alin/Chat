@@ -4,17 +4,14 @@ class SocketHandler
 {
     public:
         SocketHandler();
-        SocketHandler(const SocketHandler& rhs);
         ~SocketHandler();
         int getSfdNumber();
-        SocketHandler& operator=(const SocketHandler& rhs);
-
+        SocketHandler& operator=(const SocketHandler& rhs) = delete;
+        SocketHandler(SocketHandler& rhs) = delete;
+        int bind(int sfd);
     protected:
 
     private:
-        //checked with deleted methods
-        //SocketHandler& operator=(const SocketHandler& rhs) = delete;
-        //SocketHandler(SocketHandler& rhs) = delete;
         static const int ERROR_SFD = -1;
         int sfd;
 };
