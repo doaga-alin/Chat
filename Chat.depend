@@ -1,12 +1,15 @@
 # depslib dependency file v1.0
-1515848600 source:/home/ddla/Desktop/Chat/common/SocketHandler.cpp
+1516923130 source:/home/ddla/Desktop/Chat/common/SocketHandler.cpp
 	"SocketHandler.hpp"
 	<iostream>
+	<unistd.h>
+	<stdlib.h>
+	<string.h>
 	<sys/types.h>
 	<sys/socket.h>
-	<unistd.h>
+	<sys/un.h>
 
-1516659132 /home/ddla/Desktop/Chat/common/SocketHandler.hpp
+1516924017 /home/ddla/Desktop/Chat/common/SocketHandler.hpp
 
 1516372790 source:/home/ddla/Desktop/Chat/main.cpp
 	<iostream>

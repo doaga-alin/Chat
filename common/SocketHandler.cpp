@@ -1,16 +1,19 @@
 #include "SocketHandler.hpp"
 #include <iostream>
+#include<unistd.h>
+//
+#include<stdlib.h>
+#include<string.h>
+
+namespace socketLibrary{
 #include<sys/types.h>
 #include<sys/socket.h>
-#include<unistd.h>
 #include<sys/un.h>
-#include<stdlib.h>
-#include<stdio.h>
-#include<string.h>
+}
 namespace chat{
 
 SocketHandler::SocketHandler(){
-    sfd = socket(AF_INET, SOCK_STREAM, 0);
+    sfd = socketLibrary::socket(AF_INET, socketLibrary::SOCK_STREAM, 0);
 
     if(sfd == ERROR_SFD){
         //show a message with error looging
@@ -32,18 +35,28 @@ int SocketHandler::getSfdNumber(){
 
 int SocketHandler::bind(int sfd){
 
-    struct sockaddr_un my_addr;
+    struct socketLibrary::sockaddr_un my_addr;
 
 
-    memset(&my_addr, 0, sizeof(struct sockaddr_un));
+    memset(&my_addr, 0, sizeof(struct socketLibrary::sockaddr_un));
     my_addr.sun_family = AF_INET;
 
-    if (!(bind(sfd, (struct sockaddr *) &my_addr,
-        sizeof(struct sockaddr_un))){
+    if (!(socketLibrary::bind(sfd, (struct socketLibrary::sockaddr *) &my_addr, sizeof(struct socketLibrary::sockaddr_un)))){
+        return 0;
+    }
+    return -1;
+}
 
+int SocketHandler::listen(int sfd,int backlog){
+    if(!socketLibrary::listen(sfd,backlog)){
         return 0;
     }
 
+    //Log something
     return -1;
+}
+
+int SocketHandler::accept(int sfd,struct socketLibrary::sockaddr *addr, socketLibrary::socklen_t *addrlen){
+
 }
 } // namespace chat
