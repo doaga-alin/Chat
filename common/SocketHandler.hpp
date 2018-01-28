@@ -1,21 +1,28 @@
 #pragma once
+#include <iostream>
+using std::string;
 namespace chat{
-using namespace socketLibrary;
+
+
 class SocketHandler
 {
     public:
         SocketHandler();
+        SocketHandler(int sfd);
         ~SocketHandler();
-        int getSfdNumber();
         SocketHandler& operator=(const SocketHandler& rhs) = delete;
         SocketHandler(SocketHandler& rhs) = delete;
-        int bind(int);
-        int listen(int,int);
-        int accept(int sfd,struct sockaddr *addr, socklen_t *addrlen);
+        int bind(int port);
+        int listen();
+        SocketHandler accept();
+        int connect(string ip, int port);
+        void write(const char* buff);
+        int read(char* recvBuff);
     protected:
 
     private:
         static const int ERROR_SFD = -1;
         int sfd;
+        static const int backlog = 50;
 };
 } //namespace chat

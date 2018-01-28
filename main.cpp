@@ -1,10 +1,10 @@
 #include <iostream>
-#include "common/SocketHandler.hpp"
+#include "server/Server.hpp"
 using namespace std;
-using namespace chat;
-int main()
+int main(int argc, char* argv[])
 {
-    SocketHandler sh;
+    server::Server srv;
+    srv.acceptIncommingConnections();
 
 
     return 0;
