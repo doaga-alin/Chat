@@ -3,7 +3,6 @@
 using std::string;
 namespace chat{
 
-
 class SocketHandler
 {
     public:
@@ -14,10 +13,11 @@ class SocketHandler
         SocketHandler(SocketHandler& rhs) = delete;
         int bind(int port);
         int listen();
-        SocketHandler accept();
-        int connect(string ip, int port);
+        SocketHandler* accept();
+        int connect(const string ip, int port);
         void write(const char* buff);
         int read(char* recvBuff);
+        void printSfd();
     protected:
 
     private:

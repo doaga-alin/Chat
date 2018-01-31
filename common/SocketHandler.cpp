@@ -8,9 +8,9 @@ using std::endl;
 
 namespace socketLibrary{
 #include <stdio.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
 #include <unistd.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 }
 namespace chat{
 
@@ -46,15 +46,22 @@ SocketHandler::~SocketHandler(){
 }
 
 int SocketHandler::bind(int port){
+    using namespace socketLibrary;
     cout << "bind" << endl;
-    struct socketLibrary::sockaddr_in serv_addr;
 
-    memset(&serv_addr, 0, sizeof(struct socketLibrary::sockaddr_in));
+    struct sockaddr_in serv_addr;
+
+    memset(&serv_addr, 0, sizeof(struct sockaddr_in));
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = port;
+    serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    serv_addr.sin_port = socketLibrary::htons(port);
 
-    return socketLibrary::bind(this->sfd, (struct socketLibrary::sockaddr *) &serv_addr,
+    return socketLibrary::bind(this->sfd, (struct sockaddr *) &serv_addr,
      sizeof(serv_addr));
+}
+
+void SocketHandler::printSfd(){
+    cout << this->sfd << endl;
 }
 
 int SocketHandler::listen(){
@@ -62,19 +69,24 @@ int SocketHandler::listen(){
     return socketLibrary::listen(this->sfd,this->backlog);
 }
 
-SocketHandler SocketHandler::accept(){
+SocketHandler* SocketHandler::accept(){
     cout << "accept" << endl;
-
-    SocketHandler::SocketHandler() skt(socketLibrary::accept(this->sfd,(struct socketLibrary::sockaddr*)NULL, NULL));
+    SocketHandler* skt = new SocketHandler(socketLibrary::accept(this->sfd,(struct socketLibrary::sockaddr*)NULL, NULL));
     return skt;
 }
 
-int SocketHandler::connect(string ip,int port){
+int SocketHandler::connect(const string ip,int port){
+    using namespace socketLibrary;
     struct socketLibrary::sockaddr_in serv_addr;
 
     memset(&serv_addr, 0, sizeof(struct socketLibrary::sockaddr_in));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = port;
+    if(inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr) != 1)
+    {
+        cout << "Error to set ip into serv_addr" << endl;
+        return -1;
+    }
 
     return socketLibrary::connect(this->sfd, (struct socketLibrary::sockaddr*)&serv_addr,sizeof(serv_addr));
 

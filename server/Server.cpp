@@ -3,9 +3,9 @@
 using std::cout;
 using std::endl;
 namespace server{
-Server::Server(){
-
-    cout << skt.bind() << endl;
+Server::Server(int port){
+    skt.printSfd();
+    cout << skt.bind(port) << endl;
     cout << skt.listen() << endl;
 
 }
@@ -18,8 +18,7 @@ void Server::acceptIncommingConnections(){
     cout << "Accept incomming connections" << endl;
     while(1){
         cout << "while(1)" << endl;
-        this->connSfd = skt.accept();
-        cout << this->connSfd << endl;
+        sktAccept = skt.accept();
     }
 }
 

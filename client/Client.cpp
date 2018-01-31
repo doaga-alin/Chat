@@ -5,6 +5,7 @@ using std::endl;
 namespace client{
 Client::Client(){
     cout << "Client constuctor" << endl;
+    skt.connect();
 }
 
 Client::~Client(){

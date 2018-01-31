@@ -32,9 +32,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="client/Client.cpp" />
+		<Unit filename="client/Client.hpp" />
 		<Unit filename="common/SocketHandler.cpp" />
 		<Unit filename="common/SocketHandler.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="server/Server.cpp" />
+		<Unit filename="server/Server.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
