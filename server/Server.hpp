@@ -1,16 +1,18 @@
 #pragma once
 #include "../common/SocketHandler.hpp"
+#include "../client/Client.hpp"
 namespace server{
 class Server{
 public:
     Server(int port);
     ~Server();
-    void acceptIncommingConnections();
+    void dealWithIncommingConnections();
+    void error(char* msg);
 protected:
 private:
     int portNumber;
-    chat::SocketHandler skt;
-    chat::SocketHandler* sktAccept;
+    chat::SocketHandler* skt;
+    client::Client client;
 
 };
 

@@ -3,7 +3,7 @@
 int main(int argc, char* argv[])
 {
     server::Server srv(5000);
-    srv.acceptIncommingConnections();
+    srv.dealWithIncommingConnections();
 
     return 0;
 }

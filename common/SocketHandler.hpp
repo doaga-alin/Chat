@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 using std::string;
+namespace client{
+    class Client;
+}
 namespace chat{
 
 class SocketHandler
@@ -11,13 +14,16 @@ class SocketHandler
         ~SocketHandler();
         SocketHandler& operator=(const SocketHandler& rhs) = delete;
         SocketHandler(SocketHandler& rhs) = delete;
-        int bind(int port);
-        int listen();
-        SocketHandler* accept();
+        void bind(int port);
+        void listen();
+        client::Client accept();
         int connect(const string ip, int port);
         void write(const char* buff);
-        int read(char* recvBuff);
+        //int read(char* recvBuff);
         void printSfd();
+        void error(const char* msg);
+        void send(SocketHandler sktAccept, const char* str);
+        void read(SocketHandler sktAccept, char* str, int buffSize);
     protected:
 
     private:
