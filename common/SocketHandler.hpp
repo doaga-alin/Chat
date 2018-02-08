@@ -19,11 +19,10 @@ class SocketHandler
         client::Client accept();
         int connect(const string ip, int port);
         void write(const char* buff);
-        //int read(char* recvBuff);
         void printSfd();
         void error(const char* msg);
-        void send(SocketHandler sktAccept, const char* str);
-        void read(SocketHandler sktAccept, char* str, int buffSize);
+        void send(const char* str);
+        void read(char* str, int* buffSize);
     protected:
 
     private:

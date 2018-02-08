@@ -13,6 +13,7 @@ Server::Server(int port){
 
 Server::~Server(){
     cout << "Server destructor" << endl;
+    delete skt;
 }
 
 void Server::error(char* msg){
@@ -22,12 +23,14 @@ void Server::error(char* msg){
 
 void Server::dealWithIncommingConnections(){
     cout << "Accept incomming connections" << endl;
-    char* buffer;
+    char buffer[256];
     int buffSize;
     while(1){
         cout << "while(1)" << endl;
         client = skt->accept();
-        //skt.read(client.getSfd(), buffer, buffSize);
+        //skt->read(client.getSfd(), buffer, &buffSize);
+        client.skt->read(buffer, &buffSize);
+        //multiplexare -> select
     }
 }
 

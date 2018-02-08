@@ -5,6 +5,7 @@ using std::endl;
 namespace client{
 Client::Client(){
     cout << "Client constuctor" << endl;
+    skt = new chat::SocketHandler();
 }
 
 Client::Client(int sfd,char* ipAddress){
@@ -20,6 +21,7 @@ Client::Client(int sfd,char* ipAddress){
 
 Client::~Client(){
     cout << "Client destructor" << endl;
+    delete skt;
 }
 
 int Client::getSfd(){

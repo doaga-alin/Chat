@@ -15,13 +15,10 @@ public:
 protected:
 
 private:
+    chat::SocketHandler* skt;
     int ERROR_SFD = -1;
-    int sfd;
     string ipAddress;
     string buffer;
-    //hat::SocketHandler skt;
-
+    //chat::SocketHandler skt;
 };
-
-
 }

@@ -105,22 +105,14 @@ int SocketHandler::connect(const string ip,int port){
 
 }
 
-void SocketHandler::write(const char* buff){
-    socketLibrary::write(this->sfd, buff, strlen(buff));
-}
-//check it again
-/*int SocketHandler::read(char* recvBuff){
-    return socketLibrary::read(this->sfd, recvBuff, strlen(recvBuff));
-}*/
-
-void SocketHandler::send(SocketHandler sktAccept, const char *str){
-    if(socketLibrary::send(sktAccept.sfd, str, strlen(str), 0) < 0){
+void SocketHandler::send(const char *str){
+    if(socketLibrary::send(sfd, str, strlen(str), 0) < 0){
         error("Cannot send data");
     }
 }
 
-void SocketHandler::read(SocketHandler sktAccept, char *buff, int buffSize){
-    if(socketLibrary::read(sktAccept.sfd, buff, buffSize) < 0){
+void SocketHandler::read(char *buff, int* buffSize){
+    if(socketLibrary::read(sfd, buff, *buffSize) < 0){
         error("Cannot read");
     }
 }
