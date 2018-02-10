@@ -8,17 +8,16 @@ public:
     ~Client();
     void sendmmsg(char*);
     void error(const char*);
-    int getSfd();
-    string getIpAddress();
     void setBuffer(string);
-    string getBuffer();
+    void readMessage(char*, int*);
 protected:
 
 private:
     chat::SocketHandler* skt;
     int ERROR_SFD = -1;
+    char buffer[256];
+    int buffSize;
     string ipAddress;
-    string buffer;
     //chat::SocketHandler skt;
 };
 }

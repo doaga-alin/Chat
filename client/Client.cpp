@@ -24,21 +24,10 @@ Client::~Client(){
     delete skt;
 }
 
-int Client::getSfd(){
-    return this->sfd;
+void Client::readMessage(char* buffer, int* buffSize){
+    this->skt.read(buffer, buffSize);
 }
 
-string Client::getIpAddress(){
-    return this->ipAddress;
-}
-
-void Client::setBuffer(string buffer){
-    this->buffer = buffer;
-}
-
-string Client::getBuffer(){
-    return this->buffer;
-}
 
 void Client::error(const char* msg){
     perror(msg);

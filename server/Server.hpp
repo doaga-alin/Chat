@@ -12,8 +12,8 @@ protected:
 private:
     int portNumber;
     chat::SocketHandler* skt;
-    std::vector<client::Client> client;
+    //std::vector<client::Client> client;
+    client::Client client;
 
 };
-
 }
