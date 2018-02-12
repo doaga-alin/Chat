@@ -5,6 +5,7 @@ using std::endl;
 namespace server{
 Server::Server(int port){
     cout << "Server constructor" << endl;
+    cout << "port in server is " << port << endl;
     skt = new chat::SocketHandler();
     skt->bind(port);
     skt->listen();
@@ -14,6 +15,7 @@ Server::Server(int port){
 Server::~Server(){
     cout << "Server destructor" << endl;
     delete skt;
+
 }
 
 void Server::error(char* msg){
@@ -28,8 +30,11 @@ void Server::dealWithIncommingConnections(){
         cout << "while(1)" << endl;
         client = skt->accept();
         cout << "after accept"  << endl;
+        cout << "before readMessage" << endl;
         client.readMessage();
+        cout << "after readMessage" << endl;
         client.printMessage();
+        cout << "after printMessage" << endl;
         //multiplexare -> select
     }
 }

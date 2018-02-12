@@ -29,7 +29,7 @@ Client::~Client(){
 }
 
 void Client::connectToServer(){
-    this->skt->connect(this->serverIp,this->portNo);
+    cout << this->skt->connect(this->serverIp,this->portNo) << endl;
 }
 void Client::readMessage(){
     this->skt->read(this->buffer, &(this->buffSize));
@@ -40,6 +40,7 @@ void Client::sendMessage(char * str){
 }
 
 void Client::printMessage(){
+    cout << "cevaaaaaaaaaaaaaa" << endl;
     cout << this->buffer << endl;
 }
 
