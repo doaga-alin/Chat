@@ -5,11 +5,15 @@ class Client{
 public:
     Client();
     Client(int, char*);
+    Client(string, int);
     ~Client();
     void sendmmsg(char*);
     void error(const char*);
     void setBuffer(string);
-    void readMessage(char*, int*);
+    void readMessage();
+    void connectToServer();
+    void sendMessage(char* str);
+    void printMessage();
 protected:
 
 private:
@@ -18,6 +22,8 @@ private:
     char buffer[256];
     int buffSize;
     string ipAddress;
+    string serverIp;
+    int portNo;
     //chat::SocketHandler skt;
 };
 }
