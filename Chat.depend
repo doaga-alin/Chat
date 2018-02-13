@@ -35,3 +35,40 @@
 1518384933 /home/ddla/Desktop/Chat/client/Client.hpp
 	"../common/SocketHandler.hpp"
 
+1518524834 source:/home/doagaalin/Desktop/Chat/client/Client.cpp
+	"Client.hpp"
+	<iostream>
+
+1518525118 /home/doagaalin/Desktop/Chat/client/Client.hpp
+	"../common/SocketHandler.hpp"
+
+1518524823 /home/doagaalin/Desktop/Chat/common/SocketHandler.hpp
+	<iostream>
+
+1518092170 source:/home/doagaalin/Desktop/Chat/main.cpp
+	<iostream>
+	<string.h>
+	"server/Server.hpp"
+	"client/Client.hpp"
+
+1518522927 /home/doagaalin/Desktop/Chat/server/Server.hpp
+	"../common/SocketHandler.hpp"
+	"../client/Client.hpp"
+
+1518524919 source:/home/doagaalin/Desktop/Chat/server/Server.cpp
+	"Server.hpp"
+	<iostream>
+
+1518524864 source:/home/doagaalin/Desktop/Chat/common/SocketHandler.cpp
+	"SocketHandler.hpp"
+	<iostream>
+	<stdlib.h>
+	<string.h>
+	"../client/Client.hpp"
+	<stdio.h>
+	<unistd.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<sys/socket.h>
+

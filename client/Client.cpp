@@ -15,14 +15,41 @@ Client::Client(int sfd,char* ipAddress){
     this->ipAddress = ipAddress;
 }
 
+int Client::getSktSfd(){
+        return this->skt->getSfd();
+    }
+
 Client::Client(string serverIp, int portNo){
     cout << "Client constructor with portno and serverIp" << endl;
     skt = new chat::SocketHandler();
     this->portNo  = portNo;
     this->serverIp = serverIp;
-
-
 }
+
+Client::Client(const Client& rhs){
+    cout << "Copy constructor" << endl;
+    skt = new chat::SocketHandler(*rhs.skt);
+    ERROR_SFD = rhs.ERROR_SFD;
+    //buffer = rhs.buffer;
+    buffSize = rhs.buffSize;
+    ipAddress = rhs.ipAddress;
+    serverIp = rhs.serverIp;
+    portNo = rhs.portNo;
+}
+
+Client& Client::operator=(const Client& rhs){
+    cout << "Copy constructor" << endl;
+    skt = new chat::SocketHandler(*rhs.skt);
+    ERROR_SFD = rhs.ERROR_SFD;
+    //buffer = rhs.buffer;
+    buffSize = rhs.buffSize;
+    ipAddress = rhs.ipAddress;
+    serverIp = rhs.serverIp;
+    portNo = rhs.portNo;
+
+    return *this;
+}
+
 Client::~Client(){
     cout << "Client destructor" << endl;
     delete skt;
@@ -36,6 +63,7 @@ void Client::readMessage(){
 }
 
 void Client::sendMessage(char * str){
+    cout << str << endl;
     this->skt->send(str);
 }
 

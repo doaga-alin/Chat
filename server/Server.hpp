@@ -13,7 +13,7 @@ private:
     int portNumber;
     chat::SocketHandler* skt;
     //std::vector<client::Client> client;
-    client::Client client;
+    client::Client* client;
 
 };
 }

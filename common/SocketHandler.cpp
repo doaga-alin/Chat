@@ -13,6 +13,7 @@ namespace socketLibrary{
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#include <sys/socket.h>
 }
 namespace chat{
 
@@ -29,9 +30,14 @@ SocketHandler::SocketHandler(int sfd){
     cout << "SocketHandler constructor -> sfd" << endl;
 
     this->sfd = sfd;
+    cout << this->sfd << endl;
     if(this->sfd == ERROR_SFD){
         error("Error when creating socket");
     }
+}
+
+SocketHandler::SocketHandler(const SocketHandler& rhs){
+    sfd = rhs.sfd;
 }
 
 SocketHandler::~SocketHandler(){
@@ -75,6 +81,10 @@ void SocketHandler::listen(){
     }
 }
 
+int SocketHandler::getSfd(){
+    return this->sfd;
+}
+
 client::Client SocketHandler::accept(){
     using namespace socketLibrary;
     cout << "accept" << endl;
@@ -90,7 +100,8 @@ client::Client SocketHandler::accept(){
     cout << "Ipaddress is : ->   " << ipAddress << endl;
     cout << addr.sin_port << endl;
     client::Client client(clientSfd,ipAddress);
-
+    cout << "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" << endl;
+    cout << client.getSktSfd() << endl;
     return client;
 }
 
@@ -112,7 +123,6 @@ int SocketHandler::connect(const string ip,int port){
     serv_addr.sin_family = AF_INET;
     inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr);
     serv_addr.sin_port = htons(port);
-    //serv_addr.sin_addr.s_addr = *(unsigned long*) host_entry->h_addr_list;
     return socketLibrary::connect(this->sfd, (struct socketLibrary::sockaddr*)&serv_addr,sizeof(serv_addr));
 }
 
@@ -124,7 +134,13 @@ void SocketHandler::send(const char *str){
 
 void SocketHandler::read(char *buff, int* buffSize){
     cout << "Im in read message" << endl;
-    if(socketLibrary::read(this->sfd, buff, *buffSize) < 0){
+    char buffer[255];
+    //int ceva = socketLibrary::read(this->sfd, buffer, 255);
+    cout << this->sfd << endl;
+    int ceva = socketLibrary::recv(this->sfd, buffer, 255, 0);
+    cout << "ceva is " << ceva << endl;
+    cout << buffer << endl;
+    if( ceva < 0){
         error("Cannot read");
     }
 }

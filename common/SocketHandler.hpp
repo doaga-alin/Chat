@@ -11,9 +11,10 @@ class SocketHandler
     public:
         SocketHandler();
         SocketHandler(int sfd);
+        SocketHandler(const SocketHandler& rhs);
         ~SocketHandler();
         SocketHandler& operator=(const SocketHandler& rhs) = delete;
-        SocketHandler(SocketHandler& rhs) = delete;
+        //SocketHandler(SocketHandler& rhs) = delete;
         void bind(int port);
         void listen();
         client::Client accept();
@@ -23,6 +24,7 @@ class SocketHandler
         void error(const char* msg);
         void send(const char* str);
         void read(char* str, int* buffSize);
+        int getSfd();
     protected:
 
     private:

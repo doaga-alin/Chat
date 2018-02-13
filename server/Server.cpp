@@ -28,13 +28,9 @@ void Server::dealWithIncommingConnections(){
 
     while(1){
         cout << "while(1)" << endl;
-        client = skt->accept();
-        cout << "after accept"  << endl;
-        cout << "before readMessage" << endl;
-        client.readMessage();
-        cout << "after readMessage" << endl;
-        client.printMessage();
-        cout << "after printMessage" << endl;
+        client = new client::Client(skt->accept());
+        client->readMessage();
+        client->printMessage();
         //multiplexare -> select
     }
 }
