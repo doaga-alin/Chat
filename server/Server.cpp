@@ -15,6 +15,7 @@ Server::Server(int port){
 Server::~Server(){
     cout << "Server destructor" << endl;
     delete skt;
+    delete client;
 
 }
 
@@ -28,7 +29,7 @@ void Server::dealWithIncommingConnections(){
 
     while(1){
         cout << "while(1)" << endl;
-        client = new client::Client(skt->accept());
+        client = skt->accept();
         client->readMessage();
         client->printMessage();
         //multiplexare -> select

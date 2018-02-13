@@ -6,8 +6,6 @@ public:
     Client();
     Client(int, char*);
     Client(string, int);
-    Client& operator=(const Client& rhs);
-    Client(const Client& rhs);
     ~Client();
     void sendmmsg(char*);
     void error(const char*);

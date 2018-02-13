@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
         std::string str(argv[2]);
         client::Client client(str, atoi(argv[3]));
         client.connectToServer();
-        client.sendMessage("Hello World");
+        client.sendMessage(argv[4]);
     }
 
     return 0;

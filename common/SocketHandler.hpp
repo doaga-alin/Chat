@@ -14,17 +14,14 @@ class SocketHandler
         SocketHandler(const SocketHandler& rhs);
         ~SocketHandler();
         SocketHandler& operator=(const SocketHandler& rhs) = delete;
-        //SocketHandler(SocketHandler& rhs) = delete;
+        SocketHandler(SocketHandler& rhs) = delete;
         void bind(int port);
         void listen();
-        client::Client accept();
+        client::Client* accept();
         int connect(const string ip, int port);
-        void write(const char* buff);
-        void printSfd();
         void error(const char* msg);
         void send(const char* str);
         void read(char* str, int* buffSize);
-        int getSfd();
     protected:
 
     private:
