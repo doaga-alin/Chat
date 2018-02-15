@@ -16,6 +16,5 @@ int main(int argc, char* argv[])
         client.connectToServer();
         client.sendMessage(argv[4]);
     }
-
     return 0;
 }
