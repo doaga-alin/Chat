@@ -4,8 +4,6 @@ using std::cout;
 using std::endl;
 namespace server{
 Server::Server(int port){
-    cout << "Server constructor" << endl;
-    cout << "port in server is " << port << endl;
     skt = new chat::SocketHandler();
     skt->bind(port);
     skt->listen();
@@ -13,26 +11,23 @@ Server::Server(int port){
 }
 
 Server::~Server(){
-    cout << "Server destructor" << endl;
     delete skt;
     delete client;
 
 }
 
-void Server::error(char* msg){
+void Server::error(const char* msg){
     perror(msg);
     exit(1);
 }
 
 void Server::dealWithIncommingConnections(){
-    cout << "Accept incomming connections" << endl;
 
-    while(1){
+    while(true){
         cout << "while(1)" << endl;
         client = skt->accept();
         client->readMessage();
         client->printMessage();
-        //multiplexare -> select
     }
 }
 

@@ -23,7 +23,7 @@ SocketHandler::SocketHandler(){
         error("Error when creating socket");
     }
 }
-
+//add explicit
 SocketHandler::SocketHandler(int sfd){
     this->sfd = sfd;
     if(this->sfd == ERROR_SFD){
@@ -45,7 +45,7 @@ void SocketHandler::error(const char* msg){
     exit(1);
 }
 
-void SocketHandler::bind(int port){
+void SocketHandler::bind(const int port){
     using namespace socketLibrary;
 
     struct sockaddr_in serv_addr;
@@ -53,7 +53,7 @@ void SocketHandler::bind(int port){
     memset(&serv_addr, 0, sizeof(struct sockaddr_in));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(port);
-    serv_addr.sin_addr.s_addr = inet_addr("10.0.2.15");
+    serv_addr.sin_addr.s_addr = INADDR_ANY;
     if(socketLibrary::bind(this->sfd, (struct sockaddr *) &serv_addr,
         sizeof(serv_addr)) < 0){
         error("Error to bind socket");
@@ -83,7 +83,7 @@ client::Client* SocketHandler::accept(){
     return client;
 }
 
-int SocketHandler::connect(const string ip,int port){
+int SocketHandler::connect(const string ip,const int port){
     using namespace socketLibrary;
 
     struct socketLibrary::sockaddr_in serv_addr;
@@ -101,13 +101,13 @@ int SocketHandler::connect(const string ip,int port){
     return socketLibrary::connect(this->sfd, (struct socketLibrary::sockaddr*)&serv_addr,sizeof(serv_addr));
 }
 
-void SocketHandler::send(const char *str){
+void SocketHandler::send(const char* str){
     if(socketLibrary::send(this->sfd, str, strlen(str), 0) < 0){
         error("Cannot send data");
     }
 }
 
-void SocketHandler::read(char *buff, int* buffSize){
+void SocketHandler::read(char* buff, int* buffSize){
     if( socketLibrary::read(this->sfd, buff, 255) < 0){
         error("Cannot read");
     }

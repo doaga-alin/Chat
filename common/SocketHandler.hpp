@@ -10,18 +10,17 @@ class SocketHandler
 {
     public:
         SocketHandler();
-        SocketHandler(int sfd);
-        SocketHandler(const SocketHandler& rhs);
+        SocketHandler(int);
         ~SocketHandler();
         SocketHandler& operator=(const SocketHandler& rhs) = delete;
-        SocketHandler(SocketHandler& rhs) = delete;
-        void bind(int port);
+        SocketHandler(const SocketHandler& rhs) = delete;
+        void bind(const int);
         void listen();
         client::Client* accept();
-        int connect(const string ip, int port);
-        void error(const char* msg);
-        void send(const char* str);
-        void read(char* str, int* buffSize);
+        int connect(const string, const int);
+        void error(const char*);
+        void send(const char*);
+        void read(char*, int*);
     protected:
 
     private:

@@ -12,14 +12,14 @@ public:
     void setBuffer(string);
     void readMessage();
     void connectToServer();
-    void sendMessage(char* str);
+    void sendMessage(const char* str);
     void printMessage();
     int getSktSfd();
 protected:
 
 private:
     chat::SocketHandler* skt;
-    int ERROR_SFD = -1;
+    static const int ERROR_SFD = -1;
     char buffer[256];
     int buffSize;
     string ipAddress;

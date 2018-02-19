@@ -7,7 +7,7 @@ Client::Client(){
     cout << "Client constuctor" << endl;
     skt = new chat::SocketHandler();
 }
-
+// remove duplicated code
 Client::Client(int sfd,char* ipAddress){
 
     cout << "Client constructor with sfd and ipAddress" << endl;
@@ -24,6 +24,7 @@ Client::Client(string serverIp, int portNo){
 
 Client::~Client(){
     cout << "Client destructor" << endl;
+    //check it
     delete skt;
 }
 
@@ -34,7 +35,7 @@ void Client::readMessage(){
     this->skt->read(this->buffer, &(this->buffSize));
 }
 
-void Client::sendMessage(char * str){
+void Client::sendMessage(const char* str){
     cout << str << endl;
     this->skt->send(str);
 }
