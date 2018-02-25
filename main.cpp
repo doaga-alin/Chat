@@ -7,7 +7,7 @@ using std::cout;
 using std::endl;
 int main(int argc, char* argv[])
 {
-    cout << argc << endl;
+
     if(!argv[1]){
         cout << "ceva" << endl;
         return 0;

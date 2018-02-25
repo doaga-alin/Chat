@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../client/Client.hpp"
-
+#include "Helper.hpp"
 using std::cout;
 using std::endl;
 
@@ -20,14 +20,14 @@ namespace chat{
 SocketHandler::SocketHandler(){
     sfd = socketLibrary::socket(AF_INET, socketLibrary::SOCK_STREAM, 0);
     if(sfd == ERROR_SFD){
-        error("Error when creating socket");
+        helper::Helper::error("Error when creating socket");
     }
 }
 //add explicit
 SocketHandler::SocketHandler(int sfd){
     this->sfd = sfd;
     if(this->sfd == ERROR_SFD){
-        error("Error when creating socket");
+        helper::Helper::error("Error when creating socket");
     }
 }
 
@@ -38,11 +38,6 @@ SocketHandler::~SocketHandler(){
         }
         sfd = ERROR_SFD;
     }
-}
-
-void SocketHandler::error(const char* msg){
-    perror(msg);
-    exit(1);
 }
 
 void SocketHandler::bind(const int port){
@@ -56,13 +51,13 @@ void SocketHandler::bind(const int port){
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     if(socketLibrary::bind(this->sfd, (struct sockaddr *) &serv_addr,
         sizeof(serv_addr)) < 0){
-        error("Error to bind socket");
+        helper::Helper::error("Error to bind socket");
      }
 }
 
 void SocketHandler::listen(){
     if(socketLibrary::listen(this->sfd,this->backlog) < 0){
-        error("Error in listen method");
+        helper::Helper::error("Error in listen method");
     }
 }
 
@@ -75,7 +70,7 @@ client::Client* SocketHandler::accept(){
     socklen_t addrlen = sizeof(addr);
     int clientSfd = socketLibrary::accept(this->sfd,(struct socketLibrary::sockaddr*) &addr, &addrlen);
     if(clientSfd == ERROR_SFD){
-        error("Accept method return -1");
+        helper::Helper::error("Accept method return -1");
     }
 
     inet_ntop(AF_INET, &(addr.sin_addr), ipAddress, INET_ADDRSTRLEN);
@@ -91,7 +86,7 @@ int SocketHandler::connect(const string ip,const int port){
 
     host_entry = gethostbyname(ip.c_str());
     if(host_entry == NULL){
-        error("Error: host_entry is null");
+        helper::Helper::error("Error: host_entry is null");
     }
 
     memset(&serv_addr, 0, sizeof(serv_addr));
@@ -103,13 +98,13 @@ int SocketHandler::connect(const string ip,const int port){
 
 void SocketHandler::send(const char* str){
     if(socketLibrary::send(this->sfd, str, strlen(str), 0) < 0){
-        error("Cannot send data");
+        helper::Helper::error("Cannot send data");
     }
 }
 
 void SocketHandler::read(char* buff, int* buffSize){
     if( socketLibrary::read(this->sfd, buff, 255) < 0){
-        error("Cannot read");
+        helper::Helper::error("Cannot read");
     }
 }
 }

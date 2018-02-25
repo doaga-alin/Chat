@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1519082059 source:/home/ddla/Desktop/Chat/common/SocketHandler.cpp
+1519149033 source:/home/ddla/Desktop/Chat/common/SocketHandler.cpp
 	"SocketHandler.hpp"
 	<iostream>
 	<stdlib.h>
 	<string.h>
 	"../client/Client.hpp"
+	"Helper.hpp"
 	<stdio.h>
 	<unistd.h>
 	<netinet/in.h>
@@ -12,29 +13,30 @@
 	<netdb.h>
 	<sys/socket.h>
 
-1519082072 /home/ddla/Desktop/Chat/common/SocketHandler.hpp
+1519148741 /home/ddla/Desktop/Chat/common/SocketHandler.hpp
 	<iostream>
 
-1519080228 source:/home/ddla/Desktop/Chat/main.cpp
+1519139325 source:/home/ddla/Desktop/Chat/main.cpp
 	<iostream>
 	<string.h>
 	"server/Server.hpp"
 	"client/Client.hpp"
 	"common/SocketHandler.hpp"
 
-1518990682 source:/home/ddla/Desktop/Chat/server/Server.cpp
+1519151077 source:/home/ddla/Desktop/Chat/server/Server.cpp
 	"Server.hpp"
 	<iostream>
+	"../common/Helper.hpp"
 
-1518990669 /home/ddla/Desktop/Chat/server/Server.hpp
+1519151050 /home/ddla/Desktop/Chat/server/Server.hpp
 	"../common/SocketHandler.hpp"
 	"../client/Client.hpp"
 
-1519082119 source:/home/ddla/Desktop/Chat/client/Client.cpp
+1519146831 source:/home/ddla/Desktop/Chat/client/Client.cpp
 	"Client.hpp"
 	<iostream>
 
-1519082023 /home/ddla/Desktop/Chat/client/Client.hpp
+1519146805 /home/ddla/Desktop/Chat/client/Client.hpp
 	"../common/SocketHandler.hpp"
 
 1518524834 source:/home/doagaalin/Desktop/Chat/client/Client.cpp
@@ -73,4 +75,15 @@
 	<arpa/inet.h>
 	<netdb.h>
 	<sys/socket.h>
+
+1519146623 source:/home/ddla/Desktop/Chat/common/Helper.cpp
+	<iostream>
+	<stdlib.h>
+	<string.h>
+	"Helper.hpp"
+
+1519146600 /home/ddla/Desktop/Chat/common/Helper.hpp
+	<iostream>
+	<stdlib.h>
+	<string.h>
 

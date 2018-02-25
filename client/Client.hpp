@@ -8,7 +8,6 @@ public:
     Client(string, int);
     ~Client();
     void sendmmsg(char*);
-    void error(const char*);
     void setBuffer(string);
     void readMessage();
     void connectToServer();

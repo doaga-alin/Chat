@@ -1,5 +1,6 @@
 #include "Server.hpp"
 #include <iostream>
+#include "../common/Helper.hpp"
 using std::cout;
 using std::endl;
 namespace server{
@@ -14,11 +15,6 @@ Server::~Server(){
     delete skt;
     delete client;
 
-}
-
-void Server::error(const char* msg){
-    perror(msg);
-    exit(1);
 }
 
 void Server::dealWithIncommingConnections(){

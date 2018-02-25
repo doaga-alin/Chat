@@ -44,9 +44,4 @@ void Client::printMessage(){
     cout << this->buffer << endl;
 }
 
-void Client::error(const char* msg){
-    perror(msg);
-    exit(1);
-}
-
 }

@@ -7,7 +7,6 @@ public:
     Server(int port);
     ~Server();
     void dealWithIncommingConnections();
-    void error(const char* msg);
 protected:
 private:
     int portNumber;

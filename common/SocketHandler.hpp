@@ -18,7 +18,6 @@ class SocketHandler
         void listen();
         client::Client* accept();
         int connect(const string, const int);
-        void error(const char*);
         void send(const char*);
         void read(char*, int*);
     protected:
